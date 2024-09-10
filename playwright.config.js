@@ -1,5 +1,6 @@
 // @ts-check
 const { defineConfig, devices } = require('@playwright/test');
+const { off } = require('process');
 
 /**
  * Read environment variables from file.
@@ -22,9 +23,9 @@ module.exports = defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
-  timeout:50000,
-  expect:{
-    timeout:50000
+  timeout: 50000,
+  expect: {
+    timeout: 50000
   },
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -33,27 +34,43 @@ module.exports = defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'retain-on-failure',
-    screenshot:'on',
-    
+    screenshot: 'on',
+
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'],headless:false },
+      use: {
+        ...devices['Desktop Chrome'],
+        headless: false,
+        screenshot: 'off',
+        trace: 'on',
+        //viewport: {width:720,height:720},
+        ...devices['iPhone 11'],
+        ignoreHTTPSErrors: true,
+        permissions: ['geolocation'],
+        video: 'retain-on-failure',
+      },
     },
 
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      use: {
+        ...devices['Desktop Firefox'],
+        headless: true,
+        screenshot: 'off',
+        trace: 'off',
+        viewport: {width:720,height:720}
+      },
     },
 
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
     },
-    
+
 
     /* Test against mobile viewports. */
     // {
