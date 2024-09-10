@@ -44,7 +44,7 @@ module.exports = defineConfig({
       name: 'chromium',
       use: {
         ...devices['Desktop Chrome'],
-        headless: false,
+        headless: true,
         screenshot: 'off',
         trace: 'on',
         //viewport: {width:720,height:720},
@@ -52,6 +52,8 @@ module.exports = defineConfig({
         ignoreHTTPSErrors: true,
         permissions: ['geolocation'],
         video: 'retain-on-failure',
+        //retries : 1,
+        //workers: 2,
       },
     },
 
@@ -59,7 +61,7 @@ module.exports = defineConfig({
       name: 'firefox',
       use: {
         ...devices['Desktop Firefox'],
-        headless: true,
+        headless: false,
         screenshot: 'off',
         trace: 'off',
         viewport: {width:720,height:720}
