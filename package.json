@@ -3,14 +3,19 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test tests/WebAPI2.spec.js --headed"
+    "test": "npx playwright test tests/WebAPI2.spec.js --headed",
+    "regression": "npx playwright test",
+    "webTests": "npx playwright test tests/parallelexecution.spec.js --grep @web --project chromium",
+    "APITests": "npx playwright test --grep @API",
+    "SafariNewConfig": "npx playwright test --config playwright.config1.js --project safari"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@playwright/test": "^1.46.1",
-    "@types/node": "^22.5.0"
+    "@playwright/test": "^1.47.0",
+    "@types/node": "^22.5.0",
+    "allure-playwright": "^3.0.0-beta.12"
   }
 }

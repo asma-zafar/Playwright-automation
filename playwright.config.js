@@ -44,11 +44,11 @@ module.exports = defineConfig({
       name: 'chromium',
       use: {
         ...devices['Desktop Chrome'],
-        headless: true,
+        headless: false,
         screenshot: 'off',
         trace: 'on',
         //viewport: {width:720,height:720},
-        ...devices['iPhone 11'],
+       // ...devices['iPhone 11'],
         ignoreHTTPSErrors: true,
         permissions: ['geolocation'],
         video: 'retain-on-failure',

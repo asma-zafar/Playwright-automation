@@ -7,6 +7,7 @@ test('@web Visual Testing', async ({ page }) => {
     const screenshot = await page.screenshot();
     expect(screenshot).toMatchSnapshot('landing.png');
 });
+
 test('secreenshot and visual comparison', async ({ page }) => {
     await page.goto("https://www.flightaware.com/");
     
